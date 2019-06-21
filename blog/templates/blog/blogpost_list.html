@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Blog Spot Home</h1>
+  <p>Welcome to Blog Spot, a website developed by <em>Andy Dearing</em>!</p>
+  {% if blogpost_list %}
+  <ul>
+    {% for post in blogpost_list %}
+      <li>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}
+        </a> (<a href="{{ post.blog_author.get_absolute_url }}">{{ post.blog_author }}</a>) - {{post.post_date}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no blog posts.</p>
+  {% endif %}       
+{% endblock %}

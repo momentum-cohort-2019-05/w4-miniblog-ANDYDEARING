@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ blogpost.title }}</h1>
+<strong>By {{blogpost.blog_author}}</strong>
+<p>{{blogpost.content|linebreaks}}</p>
+    
+{% endblock %}

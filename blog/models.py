@@ -18,6 +18,10 @@ class BlogPost(models.Model):
     class Meta:
         ordering = [ 'post_date' ]
 
+    def get_absolute_url(self):
+        return reverse('blogpost-detail', args=[str(self.id)])
+
+
 
 class Comment(models.Model):
     """Model representing a comment"""
@@ -50,3 +54,7 @@ class BlogAuthor(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
+
+    def get_absolute_url(self):
+        return reverse('blog-author-detail', args=[str(self.id)])
+
