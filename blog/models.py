@@ -23,7 +23,7 @@ class Comment(models.Model):
     """Model representing a comment"""
     content = models.TextField(max_length=1000, help_text='Enter your comment (1000 chars max).')
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
-    target_blog_post = models.ForeignKey('BlogPost', on_delete=models.SET_NULL, null=True)
+    target_blog_post = models.ForeignKey('BlogPost', on_delete=models.CASCADE, null=True)
     post_date = models.DateField(auto_now_add=True)
 
     class Meta:
