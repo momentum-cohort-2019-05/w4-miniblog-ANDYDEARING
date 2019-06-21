@@ -24,10 +24,15 @@ class Comment(models.Model):
     content = models.TextField(max_length=1000, help_text='Enter your comment (1000 chars max).')
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     target_blog_post = models.ForeignKey('BlogPost', on_delete=models.CASCADE, null=True)
+    reply_to_comment = models.ForeignKey('Comment', on_delete=models.CASCADE, null=True)
     post_date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = [ 'post_date' ]
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.content
 
 class BlogAuthor(models.Model):
     """Model representing a blog author"""
