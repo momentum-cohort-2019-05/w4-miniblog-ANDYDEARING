@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>{{ blogpost.title }}</h1>
-<strong>By {{blogpost.blog_author}}</strong>
+        <strong>By <a href="{{ blogpost.blog_author.get_absolute_url }}">{{ blogpost.blog_author }}</a></strong>
 <p>{{blogpost.content|linebreaks}}</p>
     
 {% endblock %}
