@@ -4,6 +4,8 @@
 <h1>{{ blogpost.title }}</h1>
         <strong>By <a href="{{ blogpost.blog_author.get_absolute_url }}">{{ blogpost.blog_author }}</a></strong>
 <p>{{blogpost.content|linebreaks}}</p>
+<a href="{% url 'make-comment' blogpost.id %}">Make Comment</a>
+
 {% for comment in blogpost.comment_set.all %}
       <hr>
       <p>{{comment.user}} - {{comment.post_date}}</p>
