@@ -47,7 +47,7 @@ def make_comment(request, pk):
             new_comment.save()
 
             # redirect to a new URL:
-            return HttpResponseRedirect(reverse('blogpost-detail'))
+            return HttpResponseRedirect(f'/blog/blog/{pk}')
 
     # If this is a GET (or any other method) create the default form.
     else:
