@@ -16,7 +16,9 @@ class BlogPost(models.Model):
         return self.title
     
     class Meta:
-        ordering = [ 'post_date' ]
+        """Sorts the blog posts newest first"""
+        # AREA FOR IMPROVEMENT - Would ideally implement date and time
+        ordering = [ '-post_date' ]
 
     def get_absolute_url(self):
         return reverse('blogpost-detail', args=[str(self.id)])
@@ -32,6 +34,9 @@ class Comment(models.Model):
     post_date = models.DateField(auto_now_add=True)
 
     class Meta:
+        """sorts by the reverse of the post_date"""
+        # AREA FOR IMPROVEMENT - Would ideally sort under replies (not currently supported)
+        # AREA FOR IMPROVEMENT - Would ideally implement date and time
         ordering = [ '-post_date' ]
 
     def __str__(self):
@@ -46,10 +51,6 @@ class BlogAuthor(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     class Meta:
         ordering = [ 'last_name', 'first_name' ]
-
-    # def get_absolute_url(self):
-    #     """Returns the url to access a particular blog author instance"""
-    #     return reverse('blog-author-detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object."""

@@ -41,17 +41,18 @@ def make_comment(request, pk):
             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
             new_comment = Comment()
             new_comment.content = form.cleaned_data['new_comment']
+
+            # add the known data to complete the comment
             new_comment.target_blog_post = target_blog
             new_comment.user = request.user
             new_comment.post_date = datetime.date.today()
             new_comment.save()
 
             # redirect to a new URL:
-            return HttpResponseRedirect(f'/blog/blog/{pk}')
+            return HttpResponseRedirect(reverse('blogpost-detail', args=[str(pk)]))
 
     # If this is a GET (or any other method) create the default form.
     else:
-        # proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
         form = MakeComment()
 
     context = {
